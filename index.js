@@ -2,8 +2,7 @@ const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes/routes");
-const mongoString =
-  "mongodb+srv://pethouse:pethouse@cluster0.d083fx7.mongodb.net/pethouse?retryWrites=true&w=majority";
+const mongoString = process.env.MONGODB_URI;
 
 mongoose.connect(mongoString);
 const database = mongoose.connection;
