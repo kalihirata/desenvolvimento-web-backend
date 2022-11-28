@@ -1,8 +1,8 @@
-const app = require("express")();
+const { Formulario } = require("../models/models");
 const cors = require("cors");
 const express = require("express");
 const initDB = require("../db").initDB;
-const routes = require("../routes/routes");
+const app = require("express")();
 const port = 3001;
 
 initDB();
@@ -17,20 +17,33 @@ app.listen(port, (err) => {
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/pethouse", routes);
+app.post("/formulario", (req, res) => {
+  const data = new Formulario({
+    personalData: req.body.personalData,
+    address: req.body.address,
+    howToHelp: req.body.howToHelp,
+  });
 
-app.get("/api", (req, res) => {
-  const path = `/api/item/${v4()}`;
-  res.setHeader("Content-Type", "text/html");
-  res.setHeader("Cache-Control", "s-max-age=1, stale-while-revalidate");
-  res.end(`Hello! Go to item: <a href="${path}">${path}</a>`);
+  try {
+    const dataToSave = data.save();
+    res.status(200).json(dataToSave);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+app.get("/formulario", async (req, res) => {
+  try {
+    const data = await Formulario.find();
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
 
 app.get("/api/item/:slug", (req, res) => {
   const { slug } = req.params;
   res.end(`Item: ${slug}`);
 });
-
-
 
 module.exports = app;
