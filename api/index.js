@@ -17,6 +17,8 @@ app.listen(port, (err) => {
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/pethouse", routes);
+
 app.get("/api", (req, res) => {
   const path = `/api/item/${v4()}`;
   res.setHeader("Content-Type", "text/html");
@@ -29,6 +31,6 @@ app.get("/api/item/:slug", (req, res) => {
   res.end(`Item: ${slug}`);
 });
 
-app.use("/pethouse", routes);
+
 
 module.exports = app;
