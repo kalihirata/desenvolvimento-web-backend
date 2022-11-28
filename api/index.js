@@ -17,7 +17,7 @@ app.listen(port, (err) => {
 app.use(cors());
 app.use(express.json());
 
-app.post("/formulario", (req, res) => {
+app.post("/api/formulario", (req, res) => {
   const data = new Formulario({
     personalData: req.body.personalData,
     address: req.body.address,
@@ -32,7 +32,7 @@ app.post("/formulario", (req, res) => {
   }
 });
 
-app.get("/formulario", async (req, res) => {
+app.get("/api/formulario", async (req, res) => {
   try {
     const data = await Formulario.find();
     res.status(200).json(data);

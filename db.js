@@ -1,9 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 
-const uri =
-  "mongodb+srv://pethouse:pethouse@cluster0.d083fx7.mongodb.net/pethouse?retryWrites=true&w=majority";
-const mongoString = uri;
+const mongoString = process.env.MONGODB_URI;
 
 function initDB() {
   mongoose.connect(mongoString);
