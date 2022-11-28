@@ -1,16 +1,21 @@
-require('dotenv').config();
+require("dotenv").config();
 const mongoose = require("mongoose");
-const mongoString = process.env.MONGODB_URI;
 
-console.log('test');
+const uri =
+  "mongodb+srv://pethouse:pethouse@cluster0.d083fx7.mongodb.net/pethouse?retryWrites=true&w=majority";
+const mongoString = uri;
 
-mongoose.connect(mongoString);
-const database = mongoose.connection;
+function initDB() {
+  mongoose.connect(mongoString);
+  const database = mongoose.connection;
 
-database.on("error", (error) => {
-  console.log(error);
-});
+  database.on("error", (error) => {
+    console.log(error);
+  });
 
-database.once("connected", () => {
-  console.log("Database Connected");
-});
+  database.once("connected", () => {
+    console.log("Database Connected");
+  });
+}
+
+module.exports = { initDB };

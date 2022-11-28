@@ -1,7 +1,18 @@
 const app = require("express")();
 const cors = require("cors");
 const express = require("express");
+const initDB = require("../db").initDB;
 const routes = require("../routes/routes");
+const port = 5000;
+
+initDB();
+
+app.listen(port, (err) => {
+  if (err) {
+    throw err;
+  }
+  console.log("API Up and running on port " + port);
+});
 
 app.use(cors());
 app.use(express.json());
@@ -19,8 +30,5 @@ app.get("/api/item/:slug", (req, res) => {
 });
 
 app.use("/pethouse", routes);
-app.listen(5000, () => {
-  console.log("Running on port 5000.");
-});
 
 module.exports = app;
