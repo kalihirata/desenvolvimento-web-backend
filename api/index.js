@@ -3,7 +3,7 @@ const cors = require("cors");
 const express = require("express");
 const initDB = require("../db").initDB;
 const routes = require("../routes/routes");
-const port = 5000;
+const port = 3001;
 
 initDB();
 
