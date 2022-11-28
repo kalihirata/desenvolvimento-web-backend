@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": " npm run startdb && npm run startapi",
+    "startapi": "node api/index.js",
+    "startdb": "node db.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
