@@ -5,7 +5,7 @@ const formularioSchema = new mongoose.Schema({
     name: { type: String },
     email: { type: String },
     nickName: { type: String },
-    date: { type: Date },
+    date: { type: String },
     phoneNumber: { type: Number },
     cellNumber: { type: Number },
     cpf: { type: Number },
