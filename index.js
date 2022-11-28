@@ -17,13 +17,3 @@ database.on("error", (error) => {
 database.once("connected", () => {
   console.log("Database Connected");
 });
-
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-app.use("/pethouse", routes);
-
-app.listen(3000, () => {
-  console.log(`Server Started at ${3000}`);
-});
